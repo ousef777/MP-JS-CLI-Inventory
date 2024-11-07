@@ -121,7 +121,51 @@ export function viewBooks() {
   if (books.length === 0) {
     console.log("No books in the catalgoue.");
   } else {
-    console.table(books, ["title", "author", "genre", "published"]);
+    console.table(books, ["title", "author", "genre", "year"]);
+  }
+  showMenu();
+}
+
+export function searchBook() {
+  const choices = [
+    { name: "Search by title", value: "title" },
+    { name: "Search by author", value: "author" },
+    { name: "Search by genre", value: "genre" },
+    { name: "Search by year", value: "year" },
+  ];
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "action",
+      message: "Select an option:",
+      choices,
+    },
+  ])
+    .then((answers) => {
+      switch (answers.action) {
+        case "title":
+          inquirer.prompt([{ name: "title", message: "Enter the title:" },]).then(title => findBook(title.title));
+          break;
+        case "author":
+          inquirer.prompt([{ name: "author", message: "Enter the author:" },]).then(author => findBook(author.author));
+          break;
+        case "genre":
+          inquirer.prompt([{ name: "genre", message: "Enter the genre:" },]).then(genre => findBook(genre.genre));
+          break;
+        case "year":
+          inquirer.prompt([{ name: "year", message: "Enter the year:" },]).then(year => findBook(year.year));
+          break;
+      }
+    });
+}
+
+export function findBook(search) {
+  const books = Book.find().filter(book => Object.values(book).join().includes(search)); //parseInt(year) == NaN ? year : +year
+  console.log("\nCurrent Book Catalgoue:");
+  if (books.length === 0) {
+    console.log("No books in the catalgoue.");
+  } else {
+    console.table(books, ["title", "author", "genre", "year"]);
   }
   showMenu();
 }

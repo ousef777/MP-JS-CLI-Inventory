@@ -1,16 +1,16 @@
 import inquirer from "inquirer";
 
-import { addBook, deleteBook, updateBook, viewBooks, searchBook } from "./controllers.js";
+import { addGame, deleteGame, updateGame, viewGames, searchGame } from "./game_controllers.js";
 import start from "./index.js";
 
-function showMenu() {
+function showGamesMenu() {
   console.log("\n");
   const choices = [
-    { name: "Add a book", value: "add" },
-    { name: "Update a book", value: "update" },
-    { name: "Search a book", value: "search" },
-    { name: "Delete a book", value: "delete" },
-    { name: "View all books", value: "list" },
+    { name: "Add a game", value: "add" },
+    { name: "Update a game", value: "update" },
+    { name: "Search a game", value: "search" },
+    { name: "Delete a game", value: "delete" },
+    { name: "View all games", value: "list" },
     { name: "Choose a different catergory", value: "back" },
     { name: "Exit", value: "exit" },
   ];
@@ -26,19 +26,19 @@ function showMenu() {
     .then((answers) => {
       switch (answers.action) {
         case "add":
-          addBook();
+          addGame();
           break;
         case "update":
-          updateBook();
+          updateGame();
           break;
         case "search":
-          searchBook();
+          searchGame();
           break;
         case "delete":
-          deleteBook();
+          deleteGame();
           break;
         case "list":
-          viewBooks();
+          viewGames();
           break;
         case "back":
           start();
@@ -50,4 +50,4 @@ function showMenu() {
     });
 }
 
-export default showMenu;
+export default showGamesMenu;
