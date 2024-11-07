@@ -5,7 +5,7 @@ import books from "./data/books.js";
 const Book = {};
 
 Book.create = function (bookData) {
-  const newBook = { ...bookData, id: uuid4() };
+  const newBook = { ...bookData, published: +bookData.published, id: uuid4() };
   books.push(newBook);
   return newBook;
 };
@@ -19,7 +19,8 @@ Book.findById = function (bookId) {
 };
 
 Book.delete = function (bookId) {
-  books = books.filter((book) => book.id !== bookId);
+  const deleteIndex = books.findIndex((book) => book.id === bookId);
+  if (deleteIndex !== -1) books.splice(deleteIndex, 1);
 };
 
 export default Book;
