@@ -1,6 +1,6 @@
 import { v4 as uuid4 } from "uuid";
 
-const books = [
+let books = [
   {
     id: uuid4(),
     title: "The Lord of the Rings",
