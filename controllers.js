@@ -33,7 +33,7 @@ export function addBook() {
 }
 
 export function updateBook() {
-  const books = Book.findAll();
+  const books = Book.find();
   if (books.length === 0) {
     console.log("No books available to update.");
     return showMenu();
@@ -93,7 +93,7 @@ export function updateBook() {
 }
 
 export function deleteBook() {
-  const books = Book.findAll();
+  const books = Book.find();
   if (books === 0) {
     console.log("No books available to delete.");
     return showMenu();
@@ -116,7 +116,7 @@ export function deleteBook() {
 }
 
 export function viewBooks() {
-  const books = Book.findAll();
+  const books = Book.find();
   console.log("\nCurrent Book Catalgoue:");
   if (books.length === 0) {
     console.log("No books in the catalgoue.");

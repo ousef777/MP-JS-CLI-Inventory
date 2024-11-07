@@ -10,7 +10,7 @@ Book.create = function (bookData) {
   return newBook;
 };
 
-Book.findAll = function (where) {
+Book.find = function (where) {
   return books;
 };
 
